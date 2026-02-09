@@ -1,8 +1,11 @@
-import csv
+filename = input("Enter a filename (example: config.txt): ")
 
-with open("students.csv", newline="") as file:
-    reader = csv.DictReader(file)
+try:
+    with open(filename, "r") as file:
+        content = file.read()
+        print("\nFile contents:")
+        print(content)
 
-    for row in reader:
-        if row["Status"] == "Pass":
-            print(row["Name"])
+
+except FileNotFoundError:
+    print("Oops! That file doesn't exist yet 🙂")
