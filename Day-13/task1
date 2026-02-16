@@ -1,0 +1,35 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy.stats import skew, kurtosis
+
+data = {
+    "Price": [200000, 250000, 180000, 300000, 450000, 
+              500000, 150000, 220000, 270000, 350000],
+    "City": ["Delhi", "Mumbai", "Delhi", "Bangalore", "Mumbai",
+             "Delhi", "Chennai", "Bangalore", "Mumbai", "Delhi"]
+}
+
+df = pd.DataFrame(data)
+
+plt.figure()
+sns.histplot(df["Price"], kde=True)
+plt.title("Histogram of House Prices with KDE")
+plt.xlabel("Price")
+plt.ylabel("Frequency")
+plt.show()
+
+price_skewness = skew(df["Price"])
+price_kurtosis = kurtosis(df["Price"])
+
+print("Skewness of Price:", price_skewness)
+print("Kurtosis of Price:", price_kurtosis)
+
+
+plt.figure()
+sns.countplot(x=df["City"])
+plt.title("Count of Houses by City")
+plt.xlabel("City")
+plt.ylabel("Count")
+plt.show()
