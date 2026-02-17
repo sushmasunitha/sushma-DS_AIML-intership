@@ -1,0 +1,45 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = {
+    'Age': [22, 25, 30, 35, 40, 45, 50],
+    'Salary': [20000, 30000, 50000, 80000, 120000, 150000, 200000]
+}
+
+df = pd.DataFrame(data)
+
+print("Original Data:\n")
+print(df)
+
+df_standardized = (df - df.mean()) / df.std()
+
+print("\nStandardized Data:\n")
+print(df_standardized)
+
+df_normalized = (df - df.min()) / (df.max() - df.min())
+
+print("\nNormalized Data:\n")
+print(df_normalized)
+
+plt.figure()
+plt.hist(df['Salary'], bins=5)
+plt.title("Original Salary Distribution")
+plt.xlabel("Salary")
+plt.ylabel("Frequency")
+plt.show()
+
+plt.figure()
+plt.hist(df_standardized['Salary'], bins=5)
+plt.title("Standardized Salary Distribution")
+plt.xlabel("Scaled Salary")
+plt.ylabel("Frequency")
+plt.show()
+
+
+plt.figure()
+plt.hist(df_normalized['Salary'], bins=5)
+plt.title("Normalized Salary Distribution")
+plt.xlabel("Scaled Salary (0-1)")
+plt.ylabel("Frequency")
+plt.show()
