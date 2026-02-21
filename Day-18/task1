@@ -1,0 +1,36 @@
+import sqlite3
+import pandas as pd
+
+conn = sqlite3.connect("internship.db")
+cursor = conn.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS mentors (
+    mentor_id INTEGER PRIMARY KEY,
+    mentor_name TEXT,
+    track TEXT
+)
+""")
+
+cursor.execute("DELETE FROM mentors")  
+
+mentors_data = [
+    (1, "Alice", "Data Science"),
+    (2, "Bob", "Web Dev"),
+    (3, "Charlie", "Cyber Security")
+]
+
+cursor.executemany("INSERT INTO mentors VALUES (?, ?, ?)", mentors_data)
+
+conn.commit()
+
+join_query = """
+SELECT interns.name, interns.track, mentors.mentor_name
+FROM interns
+INNER JOIN mentors
+ON interns.track = mentors.track
+"""
+
+df = pd.read_sql_query(join_query, conn)
+
+print(df)
