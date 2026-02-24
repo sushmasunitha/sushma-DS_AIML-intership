@@ -1,0 +1,38 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+np.random.seed(42)
+
+heights = np.random.normal(loc=170, scale=10, size=1000)          
+incomes = np.random.exponential(scale=50000, size=1000)          
+scores = 100 - np.random.exponential(scale=10, size=1000)        
+
+datasets = {
+    "Human Heights (Normal)": heights,
+    "Household Income (Right-Skewed)": incomes,
+    "Test Scores (Left-Skewed)": scores
+}
+
+for title, data in datasets.items():
+    df = pd.DataFrame(data, columns=["Value"])
+    
+    mean = df["Value"].mean()
+    median = df["Value"].median()
+    
+    print("\n", title)
+    print("Mean:", round(mean, 2))
+    print("Median:", round(median, 2))
+    
+    if mean > median:
+        print("Distribution Type: Right-Skewed")
+    elif mean < median:
+        print("Distribution Type: Left-Skewed")
+    else:
+        print("Distribution Type: Normal Distribution")
+    
+    plt.figure()
+    sns.histplot(df["Value"], kde=True)
+    plt.title(title)
+    plt.show()

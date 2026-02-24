@@ -1,0 +1,49 @@
+import random
+
+P_heads = 1 / 2
+
+P_six = 1 / 6
+
+P_independent = P_heads * P_six
+
+print("Independent Event:")
+print("P(Heads AND 6) =", P_independent)
+
+total_marbles = 10
+red_marbles = 5
+
+P_first_red = red_marbles / total_marbles
+
+P_second_red = (red_marbles - 1) / (total_marbles - 1)
+
+P_both_red = P_first_red * P_second_red
+
+print("\nDependent Event (Without Replacement):")
+print("P(Both marbles are Red) =", P_both_red)
+
+
+trials = 100000
+count_independent = 0
+
+for _ in range(trials):
+    coin = random.choice(["Heads", "Tails"])
+    die = random.randint(1, 6)
+    
+    if coin == "Heads" and die == 6:
+        count_independent += 1
+
+print("\nExperimental Probability (Independent):", count_independent / trials)
+
+count_dependent = 0
+
+for _ in range(trials):
+    bag = ["Red"] * 5 + ["Blue"] * 5
+    
+    first_pick = random.choice(bag)
+    bag.remove(first_pick)
+    second_pick = random.choice(bag)
+    
+    if first_pick == "Red" and second_pick == "Red":
+        count_dependent += 1
+
+print("Experimental Probability (Dependent):", count_dependent / trials)

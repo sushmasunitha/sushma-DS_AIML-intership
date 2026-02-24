@@ -1,0 +1,35 @@
+import random
+
+actions = ["Click", "Scroll", "Exit"]
+
+sample_space = [(a1, a2) for a1 in actions for a2 in actions]
+
+print("Sample Space:")
+print(sample_space)
+
+total_outcomes = len(sample_space)
+
+event_E = [outcome for outcome in sample_space if "Click" in outcome]
+
+probability_E = len(event_E) / total_outcomes
+
+print("\nTotal Outcomes:", total_outcomes)
+print("Favorable Outcomes (At least one Click):", len(event_E))
+print("Probability of at least one Click:", probability_E)
+
+trials = 1000
+count_sum_7 = 0
+
+for _ in range(trials):
+    dice1 = random.randint(1, 6)
+    dice2 = random.randint(1, 6)
+    
+    if dice1 + dice2 == 7:
+        count_sum_7 += 1
+
+experimental_probability = count_sum_7 / trials
+
+print("\nNumber of times sum was 7:", count_sum_7)
+print("Experimental Probability of sum = 7:", experimental_probability)
+
+print("Theoretical Probability of sum = 7:", 1/6)
