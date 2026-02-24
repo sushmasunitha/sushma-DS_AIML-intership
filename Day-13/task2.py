@@ -1,0 +1,27 @@
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+data = {
+    "SquareFootage": [800, 1000, 1200, 1500, 1800, 2000, 2200, 2500, 2800, 3000],
+    "Price": [150000, 200000, 220000, 300000, 350000, 400000, 420000, 500000, 550000, 600000],
+    "City": ["Delhi", "Mumbai", "Delhi", "Bangalore", "Mumbai",
+             "Delhi", "Chennai", "Bangalore", "Mumbai", "Delhi"]
+}
+
+df = pd.DataFrame(data)
+
+plt.figure()
+sns.scatterplot(x=df["SquareFootage"], y=df["Price"])
+plt.title("Square Footage vs Price")
+plt.xlabel("Square Footage")
+plt.ylabel("Price")
+plt.show()
+
+plt.figure()
+sns.boxplot(x=df["City"], y=df["Price"])
+plt.title("City vs Price")
+plt.xlabel("City")
+plt.ylabel("Price")
+plt.show()

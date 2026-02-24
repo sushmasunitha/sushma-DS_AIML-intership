@@ -1,0 +1,5 @@
+sushma - Daily Goal: study python
+sushma - Daily Goal: learn ML
+sushma - Daily Goal: learn DSA
+C:\Users\sushs\AppData\Local\Programs\Python\Python310\python.exe c:/Users/sushs/OneDrive/Desktop/DS_internship/Day-6/students.py - Daily Goal: C:\Users\sushs\AppData\Local\Programs\Python\Python310\python.exe c:/Users/sushs/OneDrive/Desktop/DS_internship/Day-6/students.py
+sush - Daily Goal: learn dsa

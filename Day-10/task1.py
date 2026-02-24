@@ -1,0 +1,32 @@
+import pandas as pd
+
+data = {
+    "OrderID": [101, 102, 103, 104, 105],
+    "Customer": ["Amit", "Sara", "John", "Neha", "Ali"],
+    "Price": ["$120", "$250", "$180", "$300", "$150"],
+    "Date": ["2024-01-10", "2024-01-12", "2024-01-15", "2024-01-18", "2024-01-20"]
+}
+
+df = pd.DataFrame(data)
+
+df.to_csv("customer_orders.csv", index=False)
+
+print("customer_orders.csv created successfully ✅")
+
+
+import pandas as pd
+
+df = pd.read_csv("customer_orders.csv")
+
+print("Shape before cleaning:", df.shape)
+print("\nMissing values report:")
+print(df.isna().sum())
+
+numeric_cols = df.select_dtypes(include="number").columns
+for col in numeric_cols:
+    median_value = df[col].median()
+    df[col] = df[col].fillna(median_value)
+
+df = df.drop_duplicates()
+
+print("\nShape after cleaning:", df.shape)
